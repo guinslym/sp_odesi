@@ -1,5 +1,5 @@
 # Use an official Python runtime as an image
-FROM python:3.7
+FROM ubuntu
 
 # Sets the working directory for following COPY and CMD instructions
 # Notice we haven’t created a directory by this name - this instruction 
