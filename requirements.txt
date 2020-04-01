@@ -1,0 +1,10 @@
+peewee 
+xlrd
+pandas
+openpyxl
+XlsxWriter
+environs
+pytest
+pdbpp
+ptpython
+pytest-sugar
