@@ -1,17 +1,42 @@
-version: "2"
-services:
-  app:
-    build: ./app
-    links:
-      - db
-    ports:
-      - "5000:5000"
+version: '3.3'
 
-  db:
-    image: mysql:5.7
-    ports:
-      - "32000:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - ./db:/docker-entrypoint-initdb.d/:ro
+services:
+
+    db:
+        image: mariadb:10.4     
+        container_name: app-mariadb                
+        ports:
+            - "3320:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: helloWORLD123
+            MYSQL_DATABASE: sp_odesi
+            MYSQL_USER: sp_user
+            MYSQL_PASSWORD: helloWORLD123
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: app-phpmyadmin    
+        depends_on:
+            - db
+        restart: always
+        ports:
+            - "8888:80"
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=db
+
+    python:
+        build: .        
+        container_name: app-python      
+        command: poetry run python sp_odesi.py
+        restart: always        
+        working_dir: /app
+        volumes:
+            - ./:/app
+        environment:
+            MYSQL_HOST: db
+            MYSQL_DATABASE: sp_odesi
+            MYSQL_USER: root
+            MYSQL_PASSWORD: helloWORLD123
+            MYSQL_PORT: 3306
+        
