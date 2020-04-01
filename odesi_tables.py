@@ -1,19 +1,23 @@
 from peewee import *
 from datetime import datetime
+import os
 
 from module_log import get_log_formatter
 from environs import Env
 env = Env()
 env.read_env()
 
-db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
 
-os.environ['enrironment'] = "Test":
-    db = MySQLDatabase(
-        "sp_odesi",
-        user="root",
-        passwd="helloWORLD123",
-        )
+
+try:
+    if os.environ['environment'] != None:
+        db = MySQLDatabase(
+            "sp_odesi",
+            user="root",
+            passwd="helloWORLD123",
+            )
+except:
+    db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
 
 class AnalysisModes(Model):
     """AnalysisModes

@@ -109,3 +109,4 @@ schedule_outp*
 unanswered_chats.html
 
 .env
+*.db
