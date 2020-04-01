@@ -2,7 +2,7 @@
 
 
 ### with docker
-docker-compose up
+`docker-compose up`
 
 ### without docker
 1.  `pip install poetry`
