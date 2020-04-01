@@ -6,16 +6,14 @@ from environs import Env
 env = Env()
 env.read_env()
 
-try:
+db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
+
+os.environ['enrironment'] = "Test":
     db = MySQLDatabase(
         "sp_odesi",
         user="root",
         passwd="helloWORLD123",
         )
-except:
-    #if MariaDB is not install
-    # using Sqlite instead for Seeding the db
-    db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
 
 class AnalysisModes(Model):
     """AnalysisModes
