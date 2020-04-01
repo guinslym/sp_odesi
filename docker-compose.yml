@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
 
-    db:
+    app-mariadb:
         image: mariadb:10.4     
         container_name: app-mariadb                
         ports:
@@ -13,11 +13,11 @@ services:
             MYSQL_USER: root
             MYSQL_PASSWORD: helloWORLD123
 
-    phpmyadmin:
+    app-phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: app-phpmyadmin    
         depends_on:
-            - db
+            - mariadb
         restart: always
         ports:
             - "8888:80"
@@ -25,12 +25,14 @@ services:
             - PMA_ARBITRARY=1
             - PMA_HOST=db
 
-    python:
+    app-python:
         build: .        
         container_name: app-python      
         command: python odesi_tables.py
         restart: always        
         working_dir: /app
+        depends_on:
+            - mariadb
         volumes:
             - ./:/app
         environment:

@@ -6,13 +6,16 @@ from environs import Env
 env = Env()
 env.read_env()
 
-
-db = MySQLDatabase(
+try:
+    db = MySQLDatabase(
         "sp_odesi",
-    user="root",
-    passwd="helloWORLD123",
-    )
-
+        user="root",
+        passwd="helloWORLD123",
+        )
+except:
+    #if MariaDB is not install
+    # using Sqlite instead for Seeding the db
+    db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
 
 class AnalysisModes(Model):
     """AnalysisModes
@@ -40,6 +43,7 @@ class Dates(Model):
     """
     date_id         = AutoField()
     date            = DateField(null=False, unique=True)
+    #should remove day_of_the_week
     day_of_week     = IntegerField(null=False)
     session         = IntegerField(null=False)
 
@@ -151,7 +155,6 @@ class OdesiDailyAccess(Model):
     class Meta:
         database = db
 
-
 def create_table():
     app_log = get_log_formatter()
     AnalysisModes.create_table()
@@ -189,3 +192,4 @@ def destroy_table():
 if __name__ == '__main__':
     #destroy_table()
     create_table()
+    print("\n\t\tAll Tables are now created")
