@@ -6,8 +6,6 @@ from environs import Env
 env = Env()
 env.read_env()
 
-sp_odesi
-helloWORLD123
 
 db = MySQLDatabase(
         "sp_odesi",

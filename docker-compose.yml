@@ -10,7 +10,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: helloWORLD123
             MYSQL_DATABASE: sp_odesi
-            MYSQL_USER: sp_user
+            MYSQL_USER: root
             MYSQL_PASSWORD: helloWORLD123
 
     phpmyadmin:
@@ -28,7 +28,7 @@ services:
     python:
         build: .        
         container_name: app-python      
-        command: poetry run python sp_odesi.py
+        command: python sp_odesi.py
         restart: always        
         working_dir: /app
         volumes:
@@ -36,7 +36,7 @@ services:
         environment:
             MYSQL_HOST: db
             MYSQL_DATABASE: sp_odesi
-            MYSQL_USER: sp_user
+            MYSQL_USER: root
             MYSQL_PASSWORD: helloWORLD123
             MYSQL_PORT: 3306
         
