@@ -135,17 +135,17 @@ class OdesiDailyAccess(Model):
     """OdesiDailyAccess
 
     """
-    date_id             = ForeignKeyField(Dates, null=False, primary_key=True)
-    school_id           = ForeignKeyField(Groups, null=False, primary_key=True)
-    access_main         = IntegerField(null=False, default=0, primary_key=True)
-    execute_download    = IntegerField(null=False, default=0, primary_key=True)
-    survey_id           = ForeignKeyField(Surveys, null=False, primary_key=True)
-    s_term_id           = ForeignKeyField(SearchTerms, null=False, primary_key=True)
-    s_type_id           = ForeignKeyField(SearchTypes, null=False, primary_key=True)
-    mode_id             = ForeignKeyField(Modes, null=False, primary_key=True)
-    r_mode_id           = ForeignKeyField(RegressionModes, null=False, primary_key=True)
-    a_mode_id           = ForeignKeyField(AnalysisModes, null=False, primary_key=True)
-    e_type_id           = ForeignKeyField(ExportTypes, null=False, primary_key=True)
+    date_id             = ForeignKeyField(Dates, null=False)
+    school_id           = ForeignKeyField(Groups, null=False)
+    access_main         = IntegerField(null=False, default=0)
+    execute_download    = IntegerField(null=False, default=0)
+    survey_id           = ForeignKeyField(Surveys, null=False)
+    s_term_id           = ForeignKeyField(SearchTerms, null=False)
+    s_type_id           = ForeignKeyField(SearchTypes, null=False)
+    mode_id             = ForeignKeyField(Modes, null=False)
+    r_mode_id           = ForeignKeyField(RegressionModes, null=False)
+    a_mode_id           = ForeignKeyField(AnalysisModes, null=False)
+    e_type_id           = ForeignKeyField(ExportTypes, null=False)
     counter             = IntegerField(null=False, default=0)
 
     class Meta:
@@ -187,5 +187,5 @@ def destroy_table():
     app_log.info("Created 12 tables for ODESI" )
 
 if __name__ == '__main__':
-    destroy_table()
+    #destroy_table()
     create_table()
