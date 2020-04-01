@@ -28,7 +28,7 @@ services:
     python:
         build: .        
         container_name: app-python      
-        command: python sp_odesi.py
+        command: python odesi_tables.py
         restart: always        
         working_dir: /app
         volumes:
