@@ -8,4 +8,5 @@ WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
 COPY . /app
+RUN pip install poetry
 RUN poetry install

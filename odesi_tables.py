@@ -6,11 +6,13 @@ from environs import Env
 env = Env()
 env.read_env()
 
+sp_odesi
+helloWORLD123
 
 db = MySQLDatabase(
         "sp_odesi",
-    user=env.str("user"),
-    passwd=env.str("passwd"),
+    user="root",
+    passwd="helloWORLD123",
     )
 
 
