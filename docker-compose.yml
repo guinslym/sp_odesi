@@ -17,7 +17,7 @@ services:
         image: phpmyadmin/phpmyadmin
         container_name: app-phpmyadmin    
         depends_on:
-            - mariadb
+            - app-mariadb
         restart: always
         ports:
             - "8888:80"
@@ -32,7 +32,7 @@ services:
         restart: always        
         working_dir: /app
         depends_on:
-            - mariadb
+            - app-mariadb
         volumes:
             - ./:/app
         environment:
@@ -41,4 +41,5 @@ services:
             MYSQL_USER: root
             MYSQL_PASSWORD: helloWORLD123
             MYSQL_PORT: 3306
+            DATABASE: MARIADB
         

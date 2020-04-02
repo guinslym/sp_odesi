@@ -7,14 +7,13 @@ from environs import Env
 env = Env()
 env.read_env()
 
-
-
 try:
-    if os.environ['environment'] != None:
+    if os.environ['DATABASE'] != None:
         db = MySQLDatabase(
             "sp_odesi",
             user="root",
             passwd="helloWORLD123",
+            port=3306
             )
 except:
     db = SqliteDatabase('odesi.db', pragmas={'journal_mode': 'wal'})
